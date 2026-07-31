@@ -1,0 +1,7 @@
+order,stage,tool,documented_output
+1,Quality control,FastQC,Per-file QC reports
+2,Read trimming,Cutadapt,Quality- and length-filtered paired reads
+3,Reference indexing and alignment,STAR,Aligned read files
+4,Gene-level quantification,featureCounts,Gene count matrix
+5,Differential-expression analysis,DESeq2,"1,378-row result matrix and MA plot"
+6,Workflow orchestration,Snakemake,Rule-based pipeline definition

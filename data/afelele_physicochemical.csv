@@ -1,0 +1,11 @@
+parameter,surface_water_mean,surface_water_standard_deviation,surface_water_unit,sediment_mean,sediment_standard_deviation,sediment_unit,source_page
+Acidity,13.54,0.99,mg/L,15.74,0.1,mg/kg,53
+Alkalinity,66.84,1.44,mg/L,224.09,3.15,mg/kg,53
+Biological oxygen demand,3.9,0.05,mg/L,3.22,0.004,mg/kg,54
+Chemical oxygen demand,5.58,0.15,mg/L,4.09,0.09,mg/kg,54
+Chloride,16.21,1.19,mg/L,19.17,1.85,mg/kg,54
+Color,5.0,,not specified,3.0,,not specified,53
+Hardness,101.48,2.05,mg/L,,,mg/kg,53
+Total dissolved solid,289.87,2.59,mg/L,,,mg/kg,53
+Total suspended solid,1199.81,4.51,mg/L,,,mg/kg,53
+pH,8.16,0.03,unitless,6.87,0.05,unitless,53

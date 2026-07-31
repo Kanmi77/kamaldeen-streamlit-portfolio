@@ -1,0 +1,17 @@
+file,project,title,source,transformation
+xylanase_candidate_prioritisation.png,Xylanase,Candidate prioritisation scatter,candidate_rankings_full (1).csv,Raw values; point size reflects retention_fraction; top 3 supplied ranks annotated
+xylanase_top15_candidates.png,Xylanase,Top 15 candidates,candidate_rankings_full (1).csv,Top 15 by supplied rank; labels include FoldX ΔΔG
+xylanase_foldx_distribution.png,Xylanase,FoldX distribution by branch,candidate_rankings_full (1).csv,"Boxplots; outliers hidden for readability, underlying data unchanged"
+xylanase_docking_retention.png,Xylanase,Docking retention composition,candidate_rankings_full (1).csv,"Percentages derived from retention_fraction categories 0, 0.5, 1"
+xylanase_md_rmsd_temperature_change.png,Xylanase,MD RMSD temperature response,modeller_md_mean_metrics_24.csv,Difference calculated as mean RMSD at 373 K minus 333 K
+xylanase_wt_energy_per_residue.png,Xylanase,Wild-type energy per residue,modeller_wt_stability_631.csv + pdb_structure_features_444.csv,Boxplots; outliers hidden for readability
+afelele_physicochemical_profile.png,Afelele,Physicochemical profile,01_physicochemical_numeric(1).csv,"Within each parameter, values divided by larger reported mean; ND values excluded"
+afelele_heavy_metals_surface_water.png,Afelele,Surface-water heavy metals,BADA PROJECT(2).pdf Table 4.1,Exact means and SDs transcribed; mercury ND excluded
+afelele_heavy_metals_sediment.png,Afelele,Sediment heavy metals,BADA PROJECT(2).pdf Table 4.1,Exact means and SDs transcribed
+afelele_proteobacteria_class_composition.png,Afelele,Proteobacteria class composition,BADA PROJECT(2).pdf Fig. 4.2 / Appendix Table 1,Percentages calculated from exact class read counts
+afelele_selected_genera.png,Afelele,Selected Proteobacteria genera,BADA PROJECT(2).pdf Fig. 4.5 / Appendix Table 4,Exact read counts for selected dominant or contrasting genera
+breast_cancer_diagnosis_distribution.png,Breast Cancer,Diagnosis distribution,Breast_cancer_DS.xlsx,Counts and percentages calculated from 568 supplied records
+breast_cancer_radius_area_scatter.png,Breast Cancer,Radius Mean versus Area Mean,Breast_cancer_DS.xlsx,One missing Area Mean record excluded from plotted pairs
+breast_cancer_feature_ratio.png,Breast Cancer,Malignant-to-benign mean feature ratios,Breast_cancer_DS.xlsx,Group means calculated from supplied rows; no causal or predictive claim
+breast_cancer_correlation_heatmap.png,Breast Cancer,Selected feature correlations,Breast_cancer_DS.xlsx,Pearson correlations calculated from available paired values
+breast_cancer_radius_band_by_diagnosis.png,Breast Cancer,Diagnosis composition within Radius Mean bands,Breast_cancer_DS.xlsx,"Bands derived as Low < 12, Medium 12 to < 14, High ≥ 14; descriptive only"

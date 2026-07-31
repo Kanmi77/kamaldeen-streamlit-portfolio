@@ -1,0 +1,102 @@
+configfile: "config.yaml"
+
+SAMPLES = list(config["samples"])
+
+rule all:
+    input:
+        config["results"]["deseq2_table"],
+        config["results"]["ma_plot"],
+
+rule fastqc:
+    input:
+        r1=lambda wc: config["samples"][wc.sample]["r1"],
+        r2=lambda wc: config["samples"][wc.sample]["r2"],
+    output:
+        html1="results/qc/raw/{sample}_R1_fastqc.html",
+        zip1="results/qc/raw/{sample}_R1_fastqc.zip",
+        html2="results/qc/raw/{sample}_R2_fastqc.html",
+        zip2="results/qc/raw/{sample}_R2_fastqc.zip",
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "fastqc --outdir results/qc/raw {input.r1} {input.r2}"
+
+rule cutadapt:
+    input:
+        r1=lambda wc: config["samples"][wc.sample]["r1"],
+        r2=lambda wc: config["samples"][wc.sample]["r2"],
+    output:
+        r1="results/trimmed/{sample}_R1.fastq.gz",
+        r2="results/trimmed/{sample}_R2.fastq.gz",
+        report="results/trimmed/{sample}.cutadapt.txt",
+    params:
+        trim_front=config["cutadapt"]["trim_front"],
+        minimum_length=config["cutadapt"]["minimum_length"],
+        quality=config["cutadapt"]["quality"],
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "cutadapt -u {params.trim_front} -U {params.trim_front} "
+        "--minimum-length {params.minimum_length} -q {params.quality} "
+        "-o {output.r1} -p {output.r2} {input.r1} {input.r2} > {output.report}"
+
+rule star_index:
+    input:
+        fasta=config["reference"]["fasta"],
+        gtf=config["reference"]["gtf"],
+    output:
+        directory("results/star_index")
+    threads: config["threads"]
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "STAR --runThreadN {threads} --runMode genomeGenerate "
+        "--genomeDir {output} --genomeFastaFiles {input.fasta} "
+        "--sjdbGTFfile {input.gtf} --sjdbOverhang {config[reference][sjdb_overhang]} "
+        "--genomeSAindexNbases {config[reference][genome_sa_index_nbases]}"
+
+rule star_align:
+    input:
+        index=rules.star_index.output,
+        r1="results/trimmed/{sample}_R1.fastq.gz",
+        r2="results/trimmed/{sample}_R2.fastq.gz",
+    output:
+        bam="results/aligned/{sample}.Aligned.sortedByCoord.out.bam",
+        log="results/aligned/{sample}.Log.final.out",
+    params:
+        prefix="results/aligned/{sample}."
+    threads: config["threads"]
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "STAR --runThreadN {threads} --genomeDir {input.index} "
+        "--readFilesIn {input.r1} {input.r2} --readFilesCommand zcat "
+        "--outSAMtype BAM SortedByCoordinate --outFileNamePrefix {params.prefix} && "
+        "test -s {output.bam} && test -s {output.log}"
+
+rule featurecounts:
+    input:
+        bams=expand("results/aligned/{sample}.Aligned.sortedByCoord.out.bam", sample=SAMPLES),
+        gtf=config["reference"]["gtf"],
+    output:
+        counts=config["results"]["featurecounts"],
+        summary=config["results"]["featurecounts"] + ".summary",
+    threads: config["threads"]
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "featureCounts -T {threads} -p --countReadPairs -s {config[strandedness]} "
+        "-t exon -g gene_id -a {input.gtf} -o {output.counts} {input.bams}"
+
+rule deseq2:
+    input:
+        counts=rules.featurecounts.output.counts,
+        metadata=config["metadata"],
+        script="scripts/deseq2.R",
+    output:
+        table=config["results"]["deseq2_table"],
+        ma_plot=config["results"]["ma_plot"],
+    conda:
+        "envs/rnaseq.yaml"
+    shell:
+        "Rscript {input.script} {input.counts} {input.metadata} {output.table} {output.ma_plot}"

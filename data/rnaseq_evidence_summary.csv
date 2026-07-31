@@ -1,0 +1,5 @@
+metric,value,unit,source
+paired_end_samples,6,samples,"Book report.pdf, DESeq2 sample columns / workflow sample list"
+experimental_conditions,2,conditions,"Book report.pdf, DESeq2 condition vector"
+deseq2_result_rows,1378,rows,"Book report.pdf, DESeq2 result printout"
+deseq2_result_fields,6,columns,"Book report.pdf, baseMean/log2FoldChange/lfcSE/stat/pvalue/padj"

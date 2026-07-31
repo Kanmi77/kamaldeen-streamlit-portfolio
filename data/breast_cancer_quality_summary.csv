@@ -1,0 +1,6 @@
+Metric,Value,Note
+Uploaded records,568,Counted directly from the supplied workbook.
+Benign diagnoses,357,62.9% of uploaded records.
+Malignant diagnoses,211,37.1% of uploaded records.
+Missing Area Mean,1,Patient ID 8510824.
+Duplicate Patient IDs,0,No duplicated IDs detected.

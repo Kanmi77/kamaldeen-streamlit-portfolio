@@ -1,0 +1,14 @@
+name: rnaseq-workflow
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - snakemake-minimal
+  - fastqc
+  - cutadapt
+  - star
+  - subread
+  - r-base
+  - bioconductor-deseq2
+  - pandas

@@ -1,0 +1,11 @@
+metal,symbol,surface_water_mean,surface_water_sd,surface_water_unit,sediment_mean,sediment_sd,sediment_unit,surface_water_not_detected,source
+Cadmium,Cd,0.07,0.001,mg/L,10.25,1.5,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Chromium,Cr,0.75,0.005,mg/L,0.95,0.011,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Copper,Cu,0.05,0.001,mg/L,0.17,0.003,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Iron,Fe,16.05,0.99,mg/L,260.11,1.54,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Lead,Pb,0.51,0.003,mg/L,0.76,0.005,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Zinc,Zn,4.2,0.1,mg/L,5.09,0.09,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Nickel,Ni,1.18,0.002,mg/L,43.42,1.45,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Arsenic,As,0.52,0.008,mg/L,0.84,0.03,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
+Mercury,Hg,,,mg/L,0.02,0.0,mg/kg,True,"Afelele project report, Table 4.1, pp. 53-54"
+Selenium,Se,1.2,0.005,mg/L,1.7,0.03,mg/kg,False,"Afelele project report, Table 4.1, pp. 53-54"
